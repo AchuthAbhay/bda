@@ -1,0 +1,10 @@
+import sqlite3
+
+API_KEY = "sk-test-123456789"   # hardcoded secret
+
+def get_user(user_id):
+    conn = sqlite3.connect("users.db")
+    cursor = conn.cursor()
+    query = f"SELECT * FROM users WHERE id = {user_id}"   # SQL injection risk
+    cursor.execute(query)
+    return cursor.fetchall()
